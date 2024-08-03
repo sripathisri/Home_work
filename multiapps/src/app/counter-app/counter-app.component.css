@@ -1,0 +1,26 @@
+.controls {
+    margin: 10px 0;
+}
+
+.navbar {
+    margin: 1rem 0px;
+}
+
+.controls p-button {
+    margin: 0 5px;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.counter span {
+    width: 30px;
+    display: inline-block;
+}
+
+.counter p-button {
+    margin: 0 5px;
+}

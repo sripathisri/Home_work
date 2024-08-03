@@ -1,0 +1,24 @@
+<div class="navbar">
+    <p-button label="Counter App" badge="{{ (counters$ | async)?.length }}" [raised]="true" severity="success" />
+</div>
+<div class="controls">
+    <p-button label="Add" (click)="addCounter()" />
+    <p-button label="Reset" severity="danger" (click)="resetCounters()" />
+</div>
+<div *ngFor="let count of counters$ | async; let i = index" class="counter">
+    <p-button label="{{ count }}" [outlined]="true" severity="contrast" />
+    <p-button label="Increment" (click)="increment(i)" />
+    <p-button label="Decrement" severity="warning" (click)="decrement(i)" />
+    <p-button label="Delete" severity="danger" (click)="deleteCounter(i)" />
+</div>
+
+
+<!-- i am trying to to use @for i am unable to getting inedx -->
+<!-- @for (count of counters$ | async; track count; let i = index) {
+<div class="counter">
+    <p-button label="{{ count }}" [outlined]="true" severity="contrast" />
+    <p-button label="Increment" (click)="increment(count)" />
+    <p-button label="Decrement" severity="warning" (click)="decrement(count)" />
+    <p-button label="Delete" severity="danger" (click)="deleteCounter(count)" />
+</div>
+} -->

@@ -1,0 +1,10 @@
+<div class="card">
+    <p-menubar [model]="items">
+        <ng-template let-item pTemplate="item">
+            <a [routerLink]="item.routerLink" [ngClass]="{'active-menuitem': isActive(item)}">
+                <i [class]="item.icon"></i>
+                <span>{{ item.label }}</span>
+            </a>
+        </ng-template>
+    </p-menubar>
+</div>
