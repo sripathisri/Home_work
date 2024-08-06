@@ -25,6 +25,7 @@
     "@ngrx/entity": "^18.0.2",
     "@ngrx/store": "^18.0.2",
     "@ngrx/store-devtools": "^18.0.2",
+    "bootstrap": "^5.3.3",
     "express": "^4.18.2",
     "primeicons": "^7.0.0",
     "primeng": "^17.18.7",
