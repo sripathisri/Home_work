@@ -6,13 +6,14 @@
 
         <!-- search field -->
         <div class="col-4  border border-secondary p-2 h-100">
+            <form  #cityForm="ngForm" (ngSubmit)="cityForm.valid && sendCity(cityForm)">
             <div class="d-flex">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control"
+                placeholder="Type City Name" name="cityy" required [(ngModel)]="city" #cityy="ngModel">
                 <button class="btn btn-primary ms-2">+</button>
             </div>
-            
-
-
+            <p class="text-danger" *ngIf="(cityy.touched && cityy.invalid) || (cityy.invalid && cityForm.submitted)">Please Enter City</p>
+        </form> 
             <div class="text-end mt-3">
                 <button class="btn btn-secondary">Close</button>
             </div>
