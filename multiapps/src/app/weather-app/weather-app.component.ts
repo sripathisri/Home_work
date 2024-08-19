@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-weather-app',
   standalone: true,
-  imports: [CommonModule, FormsModule, ],
+  imports: [CommonModule, FormsModule,],
   templateUrl: './weather-app.component.html',
   styleUrl: './weather-app.component.css'
 })

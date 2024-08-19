@@ -6,41 +6,57 @@
 
         <!-- search field -->
         <div class="col-4  border border-secondary p-2 h-100">
-            <form  #cityForm="ngForm" (ngSubmit)="cityForm.valid && sendCity(cityForm)">
-            <div class="d-flex">
-                <input type="text" class="form-control"
-                placeholder="Type City Name" name="cityy" required [(ngModel)]="city" #cityy="ngModel">
-                <button class="btn btn-primary ms-2">+</button>
-            </div>
-            <p class="text-danger" *ngIf="(cityy.touched && cityy.invalid) || (cityy.invalid && cityForm.submitted)">Please Enter City</p>
-        </form> 
+            <form #cityForm="ngForm" (ngSubmit)="cityForm.valid && sendCity(cityForm)">
+                <div class="d-flex">
+                    <input type="text" class="form-control" placeholder="Type City Name" name="cityy" required
+                        [(ngModel)]="city" #cityy="ngModel">
+                    <button class="btn btn-primary ms-2">+</button>
+                </div>
+                <p class="text-danger"
+                    *ngIf="(cityy.touched && cityy.invalid) || (cityy.invalid && cityForm.submitted)">Please Enter City
+                </p>
+            </form>
             <div class="text-end mt-3">
                 <button class="btn btn-secondary">Close</button>
             </div>
         </div>
 
         <!-- weather content -->
-        <div class="col-7 border border-secondary p-2 ms-2">
-      <div>
-
-        <div class="d-flex justify-content-between"> 
-            <h4>Hyderabad</h4>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-clockwise mt-2 me-2" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
-                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
-              </svg>
-        </div>
-
-        <Div>
+        <div class="col-7 border border-secondary px-4 py-2 ms-2">
             <div>
-                <img src="" alt="">
+
+                <div class="d-flex justify-content-between">
+                    <h4>Hyderabad</h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                        class="bi bi-arrow-clockwise mt-2 me-2" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+                        <path
+                            d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
+                    </svg>
+                </div>
+
+                <div class="d-flex">
+                    <div>
+                        <img src="" alt="" class="main-img">
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div>
+                            <h5>15<sup>o</sup>C</h5>
+                        </div>
+                        <div>
+                            <h5>Clear City</h5>
+                        </div>
+                        <div>
+                            <h5>Wind : </h5>
+                        </div>
+                        <div>
+                            <h5>Pressure </h5>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-            <div>
-                <h3>15<sup>o</sup>C</h3>
-            </div>
-        </Div>
-        
-      </div>
         </div>
     </div>
 
