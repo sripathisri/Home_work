@@ -35,6 +35,11 @@ export class HeaderComponent implements OnInit {
         icon: 'pi pi-envelope',
         routerLink: '/chat',
       },
+      {
+        label: 'Reactive Form',
+        icon: 'pi pi-envelope',
+        routerLink: '/reactive',
+      },
     ];
 
     // Listen to route changes and update activeItem accordingly

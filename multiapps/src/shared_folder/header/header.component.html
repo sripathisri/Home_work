@@ -1,5 +1,5 @@
 <div class="card">
-    <p-menubar [model]="items">
+    <p-menubar [model]="items" class="pt-2">
         <ng-template let-item pTemplate="item">
             <a [routerLink]="item.routerLink" [ngClass]="{'active-menuitem': isActive(item)}">
                 <i [class]="item.icon"></i>

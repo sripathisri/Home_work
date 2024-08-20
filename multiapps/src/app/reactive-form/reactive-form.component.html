@@ -1,0 +1,63 @@
+<form class="row g-3 needs-validation" [formGroup]="userForm">
+    <div class="col-md-4">
+        <label class="form-label">First name</label>
+        <input type="text" class="form-control" formControlName="firstName">
+        <div class="text-danger"
+            *ngIf="userForm.controls['firstName'].invalid && (isFormSubmitted || userForm.controls['firstName'].touched || userForm.controls['firstName'].dirty)">
+            <span *ngIf="userForm.controls['firstName'].errors?.['required']">First Name Required</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Last name</label>
+        <input type="text" class="form-control" formControlName="lastName">
+        <div class="text-danger"
+            *ngIf="userForm.controls['lastName'].invalid   && (isFormSubmitted || userForm.controls['lastName'].touched || userForm.controls['lastName'].dirty)">
+            <span *ngIf="userForm.controls['lastName'].errors?.['required']">Last Name Required </span>
+            <span *ngIf="userForm.controls['lastName'].errors?.['minlength']"> MIn 4 Charactors Required </span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Email</label>
+        <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+            <input type="text" class="form-control" formControlName="email">
+        </div>
+        <div class="text-danger"
+            *ngIf="userForm.controls['email'].invalid  && ( isFormSubmitted || userForm.controls['email'].touched || userForm.controls['email'].dirty)">
+            <span *ngIf="userForm.controls['email'].errors?.['required']"> Email Required </span>
+            <span *ngIf="userForm.controls['email'].errors?.['email']"> Enter Valid Email </span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">City</label>
+        <input type="text" class="form-control" formControlName="city" formControlName="city">
+        <div class="text-danger"
+            *ngIf="userForm.controls['city'].invalid && (isFormSubmitted || userForm.controls['city'].touched || userForm.controls['city'].dirty)">
+            <span *ngIf="userForm.controls['city'].errors?.['required']">city Required</span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">State</label>
+        <select class="form-select" formControlName="state" formControlName="state">
+            <option selected disabled value="">Choose State</option>
+            <option>Andhra Pradesh</option>
+            <option>Telangana</option>
+            <option>Delhi</option>
+        </select>
+        <div class="text-danger"
+            *ngIf="userForm.controls['state'].invalid && (isFormSubmitted || userForm.controls['state'].touched || userForm.controls['state'].dirty)">
+            <span *ngIf="userForm.controls['state'].errors?.['required']">Please select state</span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Zip</label>
+        <input type="text" class="form-control" formControlName="zipcode" formControlName="zipcode">
+        <div class="text-danger"
+            *ngIf="userForm.controls['zipcode'].invalid && (isFormSubmitted || userForm.controls['zipcode'].touched || userForm.controls['zipcode'].dirty)">
+            <span *ngIf="userForm.controls['zipcode'].errors?.['required']">zipcode Required</span>
+        </div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="button" (click)="submitUser()">Submit form</button>
+    </div>
+</form>
