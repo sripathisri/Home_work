@@ -1,0 +1,9 @@
+1.install json server -> npm i json-server
+2.Create DB foile like  ->  Db.json
+3.Add Data in Db 
+4.run Comand for db File -> json-server --watch student.json
+
+5.import provideHttpClient() in ap.config.ts
+6.In ts file inject Httpclient instatnce for http calls
+
+7.Import ReactiveFormsModule in ts file

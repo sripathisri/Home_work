@@ -40,6 +40,12 @@ export class HeaderComponent implements OnInit {
         icon: 'pi pi-envelope',
         routerLink: '/reactive',
       },
+
+      {
+        label: 'Student Crud',
+        icon: 'pi pi-envelope',
+        routerLink: '/crud',
+      },
     ];
 
     // Listen to route changes and update activeItem accordingly
