@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { StudentService } from '../student.service';
+import { Studentmodel } from './studentmodel';
 
 @Component({
   selector: 'app-crud',
@@ -10,23 +12,38 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './crud.component.css',
 })
 export class CrudComponent implements OnInit {
-  formvalue!: FormGroup;
+  studentForm!: FormGroup;
+
+  studentData :  any
 
   http = inject(HttpClient);
   formBuilder = inject(FormBuilder);
-  
+
+  // api = Injectable(StudentService)
+  constructor(private api: StudentService) {}
 
   ngOnInit(): void {
-    this.formvalue = this.formBuilder.group({
+    this.studentForm = this.formBuilder.group({
       firstName: [''],
       lasttName: [''],
       email: [''],
       mobileNumber: [''],
       city: [''],
     });
+    this.getstudents(); 
   }
 
-  poststudent() {
-    console.log(this.formvalue.value)
+  getstudents() {
+    this.api.gstStudents().subscribe((responce) => {
+      this.studentData = responce;
+    });
+  }
+
+  poststudent(data: Studentmodel) {
+    console.log(data);
+
+    this.api.addStudent(data).subscribe((responce) => {
+      this.studentForm.reset();
+    });
   }
 }
