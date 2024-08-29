@@ -1,44 +1,28 @@
 {
   "students": [
     {
-      "id": "174e",
+      "id": "d69e",
       "firstName": "sripathi",
       "lasttName": "mamillapalli",
-      "email": "",
-      "mobileNumber": "9640982218",
-      "city": "Hyd"
-    },
-    {
-      "id": "513a",
-      "firstName": "tgd",
-      "lasttName": "dgdfg",
-      "email": "",
-      "mobileNumber": "56456456456",
-      "city": "dgfgdfg"
-    },
-    {
-      "id": "df07",
-      "firstName": "ddfdfgdf",
-      "lasttName": "fgdfg",
-      "email": "",
-      "mobileNumber": "545645t",
-      "city": "fghfgh"
-    },
-    {
-      "id": "7881",
-      "firstName": "fdgdf",
-      "lasttName": "dfgdfgdfgdf",
-      "email": "knk22@gmsil.com",
-      "mobileNumber": "45456",
+      "email": "sripathisri8@gmail.com",
+      "mobileNumber": 9640982218,
       "city": "ghfghh"
     },
     {
-      "id": "35bb",
-      "firstName": "gfhfgh",
+      "firstName": "raman",
       "lasttName": "ghfghf",
-      "email": "ghfgh@gmail.com",
-      "mobileNumber": 5645654,
-      "city": "hdfgh"
+      "email": "sda.snad@aeccar.com",
+      "mobileNumber": 45456,
+      "city": "fghfgh43",
+      "id": "39e4"
+    },
+    {
+      "id": "692b",
+      "firstName": "raman",
+      "lasttName": "",
+      "email": "",
+      "mobileNumber": "",
+      "city": ""
     }
   ]
 }

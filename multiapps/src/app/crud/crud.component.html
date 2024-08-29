@@ -5,10 +5,11 @@
                 <div class="card-header bg-success">
                     <div class="row">
                         <div class="col-6">
-                            Students List
+                            Students List CRUD
                         </div>
                         <div class="col-6 text-end">
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                (click)="addbtn()">Add
                                 student</button>
                         </div>
                     </div>
@@ -28,17 +29,18 @@
                         </thead>
                         <tbody>
                             @for (item of studentData; track $index) {
-                            <tr >
-                             <td>{{item.id}}</td>
-                             <td>{{item.firstName}}</td>
-                             <td>{{item.lasttName}}</td>
-                             <td>{{item.email}}</td>
-                             <td>{{item.mobileNumber}}</td>
-                             <td>{{item.city}}</td>
-                             <td>
-                                <button class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                             </td>
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.firstName}}</td>
+                                <td>{{item.lasttName}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.mobileNumber}}</td>
+                                <td>{{item.city}}</td>
+                                <td>
+                                    <button class="btn btn-primary me-1" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop" (click)="edit(item)">Edit</button>
+                                    <button class="btn btn-danger" (click)="deletStudent(item.id)">Delete</button>
+                                </td>
                             </tr>}
                         </tbody>
                     </table>
@@ -55,15 +57,19 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Student</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Student Details</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form [formGroup]="studentForm" (ngSubmit)="poststudent(this.studentForm.value)">
+            <form [formGroup]="studentForm" (ngSubmit)=" poststudent(this.studentForm.value)">
                 <div class="modal-body">
-
                     <div class="mb-3">
                         <label class="form-label" for="firstname">Fisrt Name</label>
                         <input type="text" class="form-control" id="firstname" formControlName="firstName">
+                        <div class="text-danger"
+                            *ngIf="studentForm.controls['firstName'].invalid && (isFormSubmitted || studentForm.controls['firstName'].touched || studentForm.controls['firstName'].dirty)">
+                            <span *ngIf="studentForm.controls['firstName'].errors?.['required']">First Name
+                                Required</span>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="lastname">Last Name</label>
@@ -74,7 +80,7 @@
                         <label class="form-label" for="email">Email</label>
                         <input type="text" class="form-control" id="email" formControlName="email">
                     </div>
-                   
+
                     <div class="mb-3">
                         <label class="form-label" for="mobile">Mobile Number</label>
                         <input type="number" class="form-control" id="mobile" formControlName="mobileNumber">
@@ -88,7 +94,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" type="submit">save</button>
+                    @if (showAdd) {
+                    <button type="button" class="btn btn-primary" type="submit">save</button>
+                    }
+                    @if (showupdate) {
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)="updateStudent()">update</button>
+                    }
+
                 </div>
             </form>
         </div>

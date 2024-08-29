@@ -7,19 +7,30 @@ import { Studentmodel } from './crud/studentmodel';
 })
 export class StudentService {
   http = inject(HttpClient);
-  constructor() { }
+  constructor() {}
 
   // get student
-
   gstStudents() {
-    return this.http.get<Studentmodel>('http://localhost:3000/students');
+    return this.http.get<Studentmodel[]>('http://localhost:3000/students');
   }
 
-
-
-  addStudent(data:Studentmodel) {
-    return this.http.post<Studentmodel>("http://localhost:3000/students", data);
+  // add student
+  addStudent(data: Studentmodel) {
+    return this.http.post<Studentmodel[]>(
+      'http://localhost:3000/students',
+      data
+    );
   }
 
+  // delete studen
+  deleteStudent(id: number) {
+    return this.http.delete<Studentmodel[]>(
+      'http://localhost:3000/students/' + id
+    );
+  }
 
+  // update student
+  updateStudent(id: number, data:Studentmodel[]) {
+    return this.http.put('http://localhost:3000/students/' + id, data);
+  }
 }
