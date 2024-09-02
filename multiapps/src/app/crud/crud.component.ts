@@ -1,9 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, Injectable, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  Component,
+  inject,
+  Injectable,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { StudentService } from '../student.service';
 import { Studentmodel } from './studentmodel';
 import { CommonModule } from '@angular/common';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-crud',
@@ -15,8 +27,7 @@ import { CommonModule } from '@angular/common';
 export class CrudComponent implements OnInit {
   studentForm!: FormGroup;
   studentId!: number;
-  showAdd!: boolean;
-  showupdate!: boolean;
+  showAdd: boolean = true;
   studentData!: Studentmodel[];
   isFormSubmitted: boolean = false;
 
@@ -24,7 +35,13 @@ export class CrudComponent implements OnInit {
   formBuilder = inject(FormBuilder);
 
   api = inject(StudentService);
-  // constructor(private api: StudentService) {}
+
+  @ViewChild('addSudentPopup') Addpopup: any;
+
+  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit(): void {
     this.studentForm = this.formBuilder.group({
@@ -37,11 +54,6 @@ export class CrudComponent implements OnInit {
     this.getstudents();
   }
 
-  addbtn() {
-    this.showAdd = true;
-    this.showupdate = false;
-  }
-
   getstudents() {
     this.api.gstStudents().subscribe((res) => {
       this.studentData = res;
@@ -49,24 +61,25 @@ export class CrudComponent implements OnInit {
   }
 
   poststudent(data: Studentmodel) {
-    this.isFormSubmitted = !this.studentForm.valid
+    this.isFormSubmitted = !this.studentForm.valid;
     if (this.studentForm.valid) {
-      this.api.addStudent(data).subscribe(
-        (responce) => {
+      this.api.addStudent(data).subscribe({
+        next: (responce) => {
           this.studentForm.reset();
           this.getstudents();
-          alert("Data added succesfully")
+          alert('Data added succesfully');
         },
-        (err) => {
-          console.log(err);
-        }
-      );
+        error: (err) => {
+          alert(err);
+        },
+        complete: () => {},
+      });
     }
   }
 
   edit(data: Studentmodel) {
-    this.showAdd = false;
-    this.showupdate = true;
+    this.showAdd = !this.showAdd;
+    this.addStudentpopup(this.Addpopup);
     this.studentId = data.id;
     this.studentForm.setValue({
       firstName: data.firstName,
@@ -93,5 +106,9 @@ export class CrudComponent implements OnInit {
         this.getstudents();
         this.studentForm.reset();
       });
+  }
+
+  addStudentpopup(modal: any) {
+    this.modalService.open(modal);
   }
 }

@@ -8,8 +8,7 @@
                             Students List CRUD
                         </div>
                         <div class="col-6 text-end">
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                (click)="addbtn()">Add
+                            <button class="btn btn-primary" (click)="addStudentpopup(addSudentPopup)">Add
                                 student</button>
                         </div>
                     </div>
@@ -37,8 +36,8 @@
                                 <td>{{item.mobileNumber}}</td>
                                 <td>{{item.city}}</td>
                                 <td>
-                                    <button class="btn btn-primary me-1" data-bs-toggle="modal"
-                                        data-bs-target="#staticBackdrop" (click)="edit(item)">Edit</button>
+                                    <button class="btn btn-primary me-1" 
+                                     (click)="edit(item)" >Edit</button>
                                     <button class="btn btn-danger" (click)="deletStudent(item.id)">Delete</button>
                                 </td>
                             </tr>}
@@ -51,59 +50,56 @@
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Student Details</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form [formGroup]="studentForm" (ngSubmit)=" poststudent(this.studentForm.value)">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label" for="firstname">Fisrt Name</label>
-                        <input type="text" class="form-control" id="firstname" formControlName="firstName">
-                        <div class="text-danger"
-                            *ngIf="studentForm.controls['firstName'].invalid && (isFormSubmitted || studentForm.controls['firstName'].touched || studentForm.controls['firstName'].dirty)">
-                            <span *ngIf="studentForm.controls['firstName'].errors?.['required']">First Name
-                                Required</span>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="lastname">Last Name</label>
-                        <input type="text" class="form-control" id="lastname" formControlName="lasttName">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="email">Email</label>
-                        <input type="text" class="form-control" id="email" formControlName="email">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="mobile">Mobile Number</label>
-                        <input type="number" class="form-control" id="mobile" formControlName="mobileNumber">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="city">City</label>
-                        <input type="text" class="form-control" id="city" formControlName="city">
-                    </div>
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    @if (showAdd) {
-                    <button type="button" class="btn btn-primary" type="submit">save</button>
-                    }
-                    @if (showupdate) {
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                        (click)="updateStudent()">update</button>
-                    }
-
-                </div>
-            </form>
+<ng-template #addSudentPopup let-c="close" let-d="dismiss">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Student Details</h1>
+            <button type="button" class="btn-close" (click)="d('Cross click')" aria-label="Close"></button>
         </div>
+        <form [formGroup]="studentForm" (ngSubmit)=" poststudent(this.studentForm.value)">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label" for="firstname">Fisrt Name</label>
+                    <input type="text" class="form-control" id="firstname" formControlName="firstName">
+                    <div class="text-danger"
+                        *ngIf="studentForm.controls['firstName'].invalid && (isFormSubmitted || studentForm.controls['firstName'].touched || studentForm.controls['firstName'].dirty)">
+                        <span *ngIf="studentForm.controls['firstName'].errors?.['required']">First Name
+                            Required</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="lastname">Last Name</label>
+                    <input type="text" class="form-control" id="lastname" formControlName="lasttName">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="text" class="form-control" id="email" formControlName="email">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="mobile">Mobile Number</label>
+                    <input type="number" class="form-control" id="mobile" formControlName="mobileNumber">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="city">City</label>
+                    <input type="text" class="form-control" id="city" formControlName="city">
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="d('Cross click')">Close</button>
+                @if (showAdd) {
+                <button type="button" class="btn btn-primary" type="submit">save</button>
+                } @else {
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="updateStudent()">update</button>
+                }
+
+            </div>
+        </form>
     </div>
-</div>
+</ng-template>
